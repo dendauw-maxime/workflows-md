@@ -53,11 +53,12 @@ on:
 env:
   CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
 
-  CLIENT_ID: c2f7b98e-f968-48a5-b0d9-f2e8d80edebd # Change this !
-  TENANT_ID: 4ded4bb1-6bff-42b3-aed7-6a36a503bf7a # Change this !
-  WORKSPACE_NAME: segersnathan # Change this !
-  RESOURCE_GROUP: NathanReserve # Change this !
-  SUBSCRIPTION_ID: 7c50f9c3-289b-4ae0-a075-08784b3b9042 # Change this !
+  CLIENT_ID: 265f0fc9-cbbb-431b-bf99-44d154a22758
+  TENANT_ID: 4ded4bb1-6bff-42b3-aed7-6a36a503bf7a
+
+  WORKSPACE_NAME: dendauw-maxime-ml
+  RESOURCE_GROUP: 04-AzureML
+  SUBSCRIPTION_ID: a59cf7a3-fd31-4936-ba10-a92420c5453d
 
   ANIMALS: cats,dogs,pandas # As we have three classes, let's just defined them here. This way we can easily loop over them later.
   TRAIN_SET_NAME: animals-training-set
@@ -237,7 +238,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ghcr.io/nathansegers/05-azuremlops-api
+            ghcr.io/dendauw-maxime/05-azuremlops-api
           # generate Docker tags based on the following events/attributes:
           # The GitHub Branch
           # The GitHub SHA
@@ -252,7 +253,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_TOKEN }}
 
       - name: Docker Build and push
         id: docker_build
