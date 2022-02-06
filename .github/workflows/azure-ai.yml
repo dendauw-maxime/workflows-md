@@ -98,7 +98,7 @@ jobs:
     # needs: [dependencies] # Wait until this job was finished.
     if: ${{ github.event.inputs.data_prep == 'true' }}
     # The type of runner that the job will run on
-    runs-on: ubuntu-20.04
+    runs-on: self-hosted
 
     env:
       DATA_FOLDER: data
@@ -134,7 +134,7 @@ jobs:
         (needs.data-preparing.result == 'success' || needs.data-preparing.result == 'skipped') &&
         github.event.inputs.ai_training == 'true'
       }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     env:
       INITIAL_LEARNING_RATE: 0.01
@@ -183,7 +183,7 @@ jobs:
         (needs.ai-training.result == 'success' || needs.ai-training.result == 'skipped') &&
         github.event.inputs.api_creation == 'true'
       }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     env:
       DEPLOYMENT_DEPENDENCIES: deployment_environment.yml
@@ -224,7 +224,7 @@ jobs:
         (needs.api-creation.result == 'success' || needs.api-creation.result == 'skipped') &&
         github.event.inputs.kubernetes_deployment == 'true'
       }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Download docker-config artifact
